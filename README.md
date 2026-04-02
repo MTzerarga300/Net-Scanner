@@ -18,7 +18,7 @@ Scans a target IP or range and generates a clean HTML security report.
 
 ## Installation
 
-git clone https://github.com/TTzerarga3000/Net-Scanner.git
+git clone https://github.com/MTzerarga300/Net-Scanner.git
 cd Net-Scanner
 python3 -m venv venv
 source venv/bin/activate
