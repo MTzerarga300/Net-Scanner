@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Scan Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0d0d0d; color: #e0e0e0; padding: 30px; }
+        h1 { color: #00ff99; }
+        h2 { color: #00ccff; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .meta { color: #aaa; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        th { background: #1a1a2e; color: #00ff99; padding: 10px; text-align: left; }
+        td { padding: 8px 10px; border-bottom: 1px solid #222; }
+        tr:hover { background: #1a1a1a; }
+        .risk-warn { color: #ff4444; font-weight: bold; }
+        .risk-ok { color: #00ff99; }
+        .host-block { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+
+<h1>🛡️ Network Scan Report</h1>
+<div class="meta">
+    <p><strong>Target:</strong> {{ target }}</p>
+    <p><strong>Scan Time:</strong> {{ scan_time }}</p>
+    <p><strong>Total Hosts Found:</strong> {{ hosts | length }}</p>
+</div>
+
+{% for host in hosts %}
+<div class="host-block">
+    <h2>Host: {{ host.ip }}</h2>
+    <p><strong>Status:</strong> {{ host.status }} &nbsp;|&nbsp; <strong>OS:</strong> {{ host.os }}</p>
+
+    {% if host.ports %}
+    <table>
+        <tr>
+            <th>Port</th>
+            <th>Protocol</th>
+            <th>State</th>
+            <th>Service</th>
+            <th>Version</th>
+            <th>Risk</th>
+        </tr>
+        {% for p in host.ports %}
+        <tr>
+            <td>{{ p.port }}</td>
+            <td>{{ p.protocol }}</td>
+            <td>{{ p.state }}</td>
+            <td>{{ p.service }}</td>
+            <td>{{ p.version }}</td>
+            <td class="{{ 'risk-warn' if 'SENSITIVE' in p.risk else 'risk-ok' }}">{{ p.risk }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No open ports found.</p>
+    {% endif %}
+</div>
+{% endfor %}
+
+</body>
+</html>

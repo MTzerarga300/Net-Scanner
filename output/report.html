@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Network Scan Report</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #0d0d0d; color: #e0e0e0; padding: 30px; }
+        h1 { color: #00ff99; }
+        h2 { color: #00ccff; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        .meta { color: #aaa; margin-bottom: 30px; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 30px; }
+        th { background: #1a1a2e; color: #00ff99; padding: 10px; text-align: left; }
+        td { padding: 8px 10px; border-bottom: 1px solid #222; }
+        tr:hover { background: #1a1a1a; }
+        .risk-warn { color: #ff4444; font-weight: bold; }
+        .risk-ok { color: #00ff99; }
+        .host-block { background: #111; border: 1px solid #222; border-radius: 8px; padding: 20px; margin-bottom: 25px; }
+    </style>
+</head>
+<body>
+
+<h1>🛡️ Network Scan Report</h1>
+<div class="meta">
+    <p><strong>Target:</strong> 127.0.0.1</p>
+    <p><strong>Scan Time:</strong> 2026-04-01 19:21:00</p>
+    <p><strong>Total Hosts Found:</strong> 1</p>
+</div>
+
+
+<div class="host-block">
+    <h2>Host: 127.0.0.1</h2>
+    <p><strong>Status:</strong> up &nbsp;|&nbsp; <strong>OS:</strong> Linux 2.6.32</p>
+
+    
+    <table>
+        <tr>
+            <th>Port</th>
+            <th>Protocol</th>
+            <th>State</th>
+            <th>Service</th>
+            <th>Version</th>
+            <th>Risk</th>
+        </tr>
+        
+        <tr>
+            <td>22</td>
+            <td>tcp</td>
+            <td>open</td>
+            <td>ssh</td>
+            <td>10.2p1 Debian 5</td>
+            <td class="risk-warn">⚠️ SENSITIVE</td>
+        </tr>
+        
+        <tr>
+            <td>80</td>
+            <td>tcp</td>
+            <td>open</td>
+            <td>http</td>
+            <td>2.4.66</td>
+            <td class="risk-warn">⚠️ SENSITIVE</td>
+        </tr>
+        
+    </table>
+    
+</div>
+
+
+</body>
+</html>
